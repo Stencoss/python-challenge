@@ -14,7 +14,7 @@ import pathlib      # Used for file pathing
 # Variables
 month_counter = 0           # Initalize month_counter to 0
 total_over_period = 0       # Initalize total_over_period to 0
-
+profits_list = []
 
 # File paths for input and output
 input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', 'budget_data.csv')
@@ -28,9 +28,15 @@ with open(input_csv) as csv_file:                                       # Open c
     next(csvreader)                                                     # Skip the header line
     for line in csvreader:                                              # Start loop to run through the file
         # print(line)                                                   # Show data
+        profits_list.append(line[1])                                    # Create a list
         month_counter += 1                                              # Count months which counts lines
         total_over_period = int(line[1]) + total_over_period            # Find the total profit losses
 
     # Subtract 1 so it does not incle
-    print(month_counter)
-    print(total_over_period)
+    print("Total Months: " + str(month_counter))
+    print("Total: " + str(total_over_period))
+    print("Average Change: ")
+    print("Greatest Increase in Profits: " + " month place holder " + max(profits_list))
+    print("Greatest Decrease in Profits: " + " month place holder " + min(profits_list))
+    
+print(profits_list)
