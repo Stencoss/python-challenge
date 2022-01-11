@@ -1,6 +1,5 @@
 # Main file for PyBank
 # TODO: Refactor into functions to be called
-# TODO: Calaculate the changes in Profit/Losses over entire period, then the average change - Not sure on this one
 
 
 
@@ -30,15 +29,9 @@ with open(input_csv) as csv_file:                                       # Open c
     csvreader = csv.reader(csv_file, delimiter=",")                     # Put in reader and seperate the comma values
     next(csvreader)                                                     # Skip the header line
     for line in csvreader:                                              # Start loop to run through the file
-        pre_change_list.append(int(line[1]))                                    # Create a list
+        pre_change_list.append(int(line[1]))                            # Create a list
         month_counter += 1                                              # Count months which counts lines
         total_over_period = int(line[1]) + total_over_period            # Find the total profit losses
-        
-        # Average change - Find the difference from one month to 
-        # the next, store the data and then find average
-        # change = int(line[1]) - next(line[1])
-        # print(change)
-        # change_list.append(line[1])
         
         
         # Find the largest value - If larger replace 
@@ -52,21 +45,18 @@ with open(input_csv) as csv_file:                                       # Open c
         if min_num > int(line[1]):
             min_num = int(line[1])
             min_month = line[0]
-        
-    # for loop that collects all column 2    
-    for i in pre_change_list :
-        if i == len(pre_change_list) -1:
-            break
-        change = i - (i + 1)         # Find the difference between each month    
-        average_change.append(int(change))               # Add to a list - then take average
     
-    print(average_change)    
-    print("Sum is: " + str(sum(average_change)) + " Length: " + str(len(average_change)))
-    print(sum(average_change) / len(average_change))
-   
-    # print("Total Months: " + str(month_counter))
-    # print("Total: " + str(total_over_period))
-    # print("Average Change: ")
-    # print("Greatest Increase in Profits: " + max_month + " " + str(max_num))
-    # print("Greatest Decrease in Profits: " + min_month + " " + str(min_num))
+    # Finding the change between first and next value        
+    for counter in range(len(pre_change_list)):                 # Run the full list
+        if counter == len(pre_change_list) - 1:                 # Don't run out of bounds
+            break                                               # If your going to break for loop
+        average_change.append(pre_change_list[counter] - pre_change_list[counter - 1])  # Find the average of change
+    
+
+        
+    print("Total Months: " + str(month_counter))
+    print("Total: " + str(total_over_period))
+    print("Average Change: " + str(sum(average_change) / len(average_change)))
+    print("Greatest Increase in Profits: " + max_month + " " + str(max_num))
+    print("Greatest Decrease in Profits: " + min_month + " " + str(min_num))
     
