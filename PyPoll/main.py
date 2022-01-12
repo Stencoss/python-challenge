@@ -1,9 +1,4 @@
 # Analyze the data set that includes election data
-# TODO: Total number of votes cast
-# TODO: Percentage of votes each candidate won by
-# TODO: Total number of votes each candidate won
-# TODO: Winner of the election based on popular vote
-# TODO: Print to terminal
 # TODO: Print to text file
 
 import csv              # allows the import and export of csv files
@@ -16,8 +11,9 @@ output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis") 
 
 # Variables
 vote_total = 0                  # Tally the total number of votes
-k_total, k_per, c_total, c_per, l_total, l_per, o_total, o_per = 0,0,0,0,0,0,0,0
-
+k_total, c_total, l_total, o_total = 0,0,0,0
+winner = ""
+winner_list =[]
 
 # Read CSV file in
 with open(input_csv) as csv_file:                           # Open csv file
@@ -33,17 +29,27 @@ with open(input_csv) as csv_file:                           # Open csv file
             l_total = l_total + 1
         elif line[2] == "O'Tooley":
             o_total = o_total + 1
-    
+            
+    # Make a list and find the winner
+    winner_list = [k_total, c_total, l_total, o_total]
+    if max(winner_list) == k_total:
+        winner = "Khan"
+    elif max(winner_list) == c_total:
+        winner = "Correy"
+    elif max(winner_list) == l_total:
+        winner = "Li"
+    else:
+        winner = "O'Tooley"
     # Start to show results
     print("Election Results")
     print("--------------------------")
     print("Total Votes: " + str(vote_total))
     print("--------------------------")
-    print("Khan: " + str(round(k_total / vote_total *100, 3)) + "% (" + str(k_total) +")")
-    print("Correy: " + str(round(c_total / vote_total *100, 3)) + "% (" + str(c_total) +")")
-    print("Li: " + str(round(l_total / vote_total *100, 3)) + "% (" + str(l_total) +")")
-    print("O'Tooley: " + str(round(o_total / vote_total *100, 3)) + "% (" + str(o_total) +")")
+    print("Khan: " + str(round(k_total / vote_total *100, 4)) + "% (" + str(k_total) +")")
+    print("Correy: " + str(round(c_total / vote_total *100, 4)) + "% (" + str(c_total) +")")
+    print("Li: " + str(round(l_total / vote_total *100, 4)) + "% (" + str(l_total) +")")
+    print("O'Tooley: " + str(round(o_total / vote_total *100, 4)) + "% (" + str(o_total) +")")
     print("-------------------------")
     #FIXME:
-    print("Winner: Khan")
+    print("Winner: " + winner)
     print("-------------------------")
