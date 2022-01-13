@@ -9,9 +9,7 @@ import pathlib      # Used for file pathing
 # Variables
 month_counter = 0           # Initalize month_counter to 0
 total_over_period = 0       # Initalize total_over_period to 0
-pre_change_list = []            # Store the changes from month to month
-change = 0                  # Change to be added to list.
-change2 = 0
+pre_change_list = []        # Store the changes from month to month
 average_change = []         # The differences of month to month list
 max_num = 0                 # store the highest number
 min_num = 0                 # store the lowest number
@@ -55,19 +53,19 @@ with open(input_csv) as csv_file:                                       # Open c
 # Output to terminal
     print("Financial Analysis")
     print("----------------------------")    
-    print("Total Months: " + str(month_counter))
-    print("Total: " + str(total_over_period))
-    print("Average Change: " + str(sum(average_change) / len(average_change)))
-    print("Greatest Increase in Profits: " + max_month + " " + str(max_num))
-    print("Greatest Decrease in Profits: " + min_month + " " + str(min_num))
+    print(f"Total Months: {month_counter}")
+    print(f"Total: {total_over_period}")
+    print(f"Average Change: {sum(average_change) / len(average_change)}")
+    print(f"Greatest Increase in Profits: {max_month} {max_num}")
+    print(f"Greatest Decrease in Profits: {min_month} {min_num}")
     
 # Write to a txt file in Analysis dir
 with open(output_file, "w") as file:
     file.write("Financial Analysis\n")
     file.write("----------------------------\n")   
-    file.write("Total Months: " + str(month_counter) + "\n")
-    file.write("Total: " + str(total_over_period) + "\n")
-    file.write("Average Change: " + str(sum(average_change) / len(average_change)) + "\n")
-    file.write("Greatest Increase in Profits: " + max_month + " " + str(max_num) + "\n")
-    file.write("Greatest Decrease in Profits: " + min_month + " " + str(min_num) + "\n")
+    file.write(f"Total Months: {month_counter}\n")
+    file.write(f"Total: {total_over_period}\n")
+    file.write(f"Average Change: {sum(average_change) / len(average_change)}\n")
+    file.write(f"Greatest Increase in Profits: {max_month} {max_num}\n")
+    file.write(f"Greatest Decrease in Profits: {min_month} {min_num}\n")
     

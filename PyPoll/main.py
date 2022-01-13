@@ -11,10 +11,10 @@ input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', '
 output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis", "analysis.txt")                         # Write location
 
 # Variables
-vote_total = 0                  # Tally the total number of votes
-k_total, c_total, l_total, o_total = 0,0,0,0
-winner = ""
-winner_list =[]
+vote_total = 0                                              # Tally the total number of votes
+k_total, c_total, l_total, o_total = 0,0,0,0                # Initial 0 vote count per person
+winner = ""                                                 # Initialize winner string
+winner_list =[]                                             # Initialize winner list
 
 # Read CSV file in
 with open(input_csv) as csv_file:                           # Open csv file
@@ -30,9 +30,7 @@ with open(input_csv) as csv_file:                           # Open csv file
             l_total = l_total + 1
         elif line[2] == "O'Tooley":
             o_total = o_total + 1
-    
-    # counter = Counter(csvreader)
-    # print(counter)
+
     
     # Make a list and find the winner
     winner_list = [k_total, c_total, l_total, o_total]
@@ -46,7 +44,7 @@ with open(input_csv) as csv_file:                           # Open csv file
         winner = "O'Tooley"
         
     # Start to show results in terminal
-    print("Erection Results")
+    print("Election Results")
     print("--------------------------")
     print(f"Total Votes: {vote_total}")
     print("--------------------------")
@@ -60,7 +58,7 @@ with open(input_csv) as csv_file:                           # Open csv file
 
 # Write to file with results    
 with open(output_file, "w") as file:
-    file.write("Erection Results\n")
+    file.write("Election Results\n")
     file.write("--------------------------\n")
     file.write(f"Total Votes: {vote_total}\n")
     file.write("--------------------------\n")
