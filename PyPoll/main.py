@@ -4,6 +4,7 @@
 import csv              # allows the import and export of csv files
 import pathlib          # Pathing required to read and write files
 import os               # Need to use OS for reading paths
+from collections import Counter
 
 # Paths for CSV and also to write results in
 input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', 'election_data.csv')       # Read location 
@@ -29,7 +30,9 @@ with open(input_csv) as csv_file:                           # Open csv file
             l_total = l_total + 1
         elif line[2] == "O'Tooley":
             o_total = o_total + 1
-            
+    
+    counter = Counter(csvreader)
+    print(counter)
     # Make a list and find the winner
     winner_list = [k_total, c_total, l_total, o_total]
     if max(winner_list) == k_total:

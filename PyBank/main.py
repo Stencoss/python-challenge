@@ -2,7 +2,6 @@
 # TODO: Refactor into functions to be called
 
 
-
 import os           # Used for pathing
 import csv          # Used to read / write csv files
 import pathlib      # Used for file pathing
@@ -21,7 +20,7 @@ min_month = ""              # Collect the month that the min happened in
 
 # File paths for input and output
 input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', 'budget_data.csv')       # Read location 
-output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis")                         # Write location
+output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis", "analysis.txt")         # Write location
 
 
 # Read file in and keep open until with statement ends
@@ -53,10 +52,22 @@ with open(input_csv) as csv_file:                                       # Open c
         average_change.append(pre_change_list[counter] - pre_change_list[counter - 1])  # Find the average of change
     
 
-        
+# Output to terminal
+    print("Financial Analysis")
+    print("----------------------------")    
     print("Total Months: " + str(month_counter))
     print("Total: " + str(total_over_period))
     print("Average Change: " + str(sum(average_change) / len(average_change)))
     print("Greatest Increase in Profits: " + max_month + " " + str(max_num))
     print("Greatest Decrease in Profits: " + min_month + " " + str(min_num))
+    
+# Write to a txt file in Analysis dir
+with open(output_file, "w") as file:
+    file.write("Financial Analysis\n")
+    file.write("----------------------------\n")   
+    file.write("Total Months: " + str(month_counter) + "\n")
+    file.write("Total: " + str(total_over_period) + "\n")
+    file.write("Average Change: " + str(sum(average_change) / len(average_change)) + "\n")
+    file.write("Greatest Increase in Profits: " + max_month + " " + str(max_num) + "\n")
+    file.write("Greatest Decrease in Profits: " + min_month + " " + str(min_num) + "\n")
     
