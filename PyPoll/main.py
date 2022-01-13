@@ -31,8 +31,9 @@ with open(input_csv) as csv_file:                           # Open csv file
         elif line[2] == "O'Tooley":
             o_total = o_total + 1
     
-    counter = Counter(csvreader)
-    print(counter)
+    # counter = Counter(csvreader)
+    # print(counter)
+    
     # Make a list and find the winner
     winner_list = [k_total, c_total, l_total, o_total]
     if max(winner_list) == k_total:
@@ -43,7 +44,8 @@ with open(input_csv) as csv_file:                           # Open csv file
         winner = "Li"
     else:
         winner = "O'Tooley"
-    # Start to show results
+        
+    # Start to show results in terminal
     print("Erection Results")
     print("--------------------------")
     print("Total Votes: " + str(vote_total))
@@ -55,7 +57,8 @@ with open(input_csv) as csv_file:                           # Open csv file
     print("-------------------------")
     print("Winner: " + winner)
     print("-------------------------")
-    
+
+# Write to file with results    
 with open(output_file, "w") as file:
     file.write("Erection Results\n")
     file.write("--------------------------\n")
