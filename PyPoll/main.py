@@ -1,5 +1,5 @@
 # Analyze the data set that includes election data
-# TODO: Print to text file
+# TODO: Refactor code to not repear - fuctions - list composition
 
 import csv              # allows the import and export of csv files
 import pathlib          # Pathing required to read and write files
@@ -8,7 +8,7 @@ from collections import Counter
 
 # Paths for CSV and also to write results in
 input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', 'election_data.csv')       # Read location 
-output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis")                         # Write location
+output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis", "analysis.txt")                         # Write location
 
 # Variables
 vote_total = 0                  # Tally the total number of votes
@@ -44,7 +44,7 @@ with open(input_csv) as csv_file:                           # Open csv file
     else:
         winner = "O'Tooley"
     # Start to show results
-    print("Election Results")
+    print("Erection Results")
     print("--------------------------")
     print("Total Votes: " + str(vote_total))
     print("--------------------------")
@@ -53,6 +53,18 @@ with open(input_csv) as csv_file:                           # Open csv file
     print("Li: " + str(round(l_total / vote_total *100, 4)) + "% (" + str(l_total) +")")
     print("O'Tooley: " + str(round(o_total / vote_total *100, 4)) + "% (" + str(o_total) +")")
     print("-------------------------")
-    #FIXME:
     print("Winner: " + winner)
     print("-------------------------")
+    
+with open(output_file, "w") as file:
+    file.write("Erection Results\n")
+    file.write("--------------------------\n")
+    file.write("Total Votes: " + str(vote_total)+ "\n")
+    file.write("--------------------------\n")
+    file.write("Khan: " + str(round(k_total / vote_total *100, 4)) + "% (" + str(k_total) +")\n")
+    file.write("Correy: " + str(round(c_total / vote_total *100, 4)) + "% (" + str(c_total) +")\n")
+    file.write("Li: " + str(round(l_total / vote_total *100, 4)) + "% (" + str(l_total) +")\n")
+    file.write("O'Tooley: " + str(round(o_total / vote_total *100, 4)) + "% (" + str(o_total) +")\n")
+    file.write("-------------------------\n")
+    file.write("Winner: " + winner + "\n")
+    file.write("-------------------------\n") 
