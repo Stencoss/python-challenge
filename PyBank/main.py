@@ -17,7 +17,7 @@ max_month = ""              # Collect the month that the max happened in
 min_month = ""              # Collect the month that the min happened in
 
 # File paths for input and output
-input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), 'Resources', 'budget_data.csv')       # Read location 
+input_csv = os.path.join(pathlib.Path(__file__).parent.resolve(), "Resources", "budget_data.csv")       # Read location 
 output_file = os.path.join(pathlib.Path(__file__).parent.resolve(), "Analysis", "analysis.txt")         # Write location
 
 
@@ -43,11 +43,12 @@ with open(input_csv) as csv_file:                                       # Open c
             min_num = int(line[1])
             min_month = line[0]
     
+
     # Finding the change between first and next value        
     for counter in range(len(pre_change_list)):                 # Run the full list
         if counter == len(pre_change_list) - 1:                 # Don't run out of bounds
             break                                               # If your going to break for loop
-        average_change.append(pre_change_list[counter] - pre_change_list[counter - 1])  # Find the average of change
+        average_change.append(pre_change_list[counter + 1] - pre_change_list[counter])  # Find the average of change
     
 
 # Output to terminal
